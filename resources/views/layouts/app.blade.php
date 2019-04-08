@@ -22,7 +22,7 @@
 </head>
 <body class="d-flex flex-column h-100">
     <header>
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary border-bottom shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -83,7 +83,7 @@
             @yield('content')
         </div>
     </main>
-    <footer class="footer mt-auto py-3 bg-dark text-light text-center">
+    <footer class="footer mt-auto py-3 text-center text-light bg-dark">
         <div class="container">
             <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
             <p>
