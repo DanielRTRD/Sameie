@@ -11,14 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+| DEBUG ONLY
+*/
+if (Config::get('app.debug')) {
+    Route::get('/resetdb', function () {
+        \Session::forget('laravel_session');
+        Artisan::call('migrate:reset');
+        Artisan::call('migrate');
+        Artisan::call('db:seed');
+        return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
+    });
+    Route::get('/test', function () {
+        App::abort(404);
+    });
+}
+/*
+| END DEBUG ONLY
+*/
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/profile', function () {
-    dd("profile");
-})->middleware('verified');
+Route::get('/', 'HomeController@index')->name('dashboard')->middleware('verified');

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,14 +14,14 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body class="d-flex flex-column h-100">
+    <header>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -72,10 +72,25 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+    </header>
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
             @yield('content')
-        </main>
-    </div>
+        </div>
+    </main>
+    <footer class="footer mt-auto py-3 bg-dark text-light text-center">
+        <div class="container">
+            <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
+            <p>
+                Sameie v0.1.0 av <a href="https://infihex.com/" target="_blank">Infihex</a>
+                @if(Config::get('app.debug'))
+                    <p>
+                        <b><span class="text-danger">{{ mb_strtoupper(__('Debug Mode')) }}</span></b>
+                        <b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(__('Reset db and settings')) }}</a></b>
+                    </p>
+                @endif
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
