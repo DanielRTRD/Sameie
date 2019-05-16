@@ -11,11 +11,11 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+                <div class="card-header">{{ __('Du er en del av disse:') }}</div>
                 <div class="card-body">
-
-                    {{ __('Du er logget inn.') }}
+                    @foreach (Auth::user()->condos as $condo)
+                        <p><a href="{{ route('c-show', $condo->orgnr) }}">{{ $condo->orgnr ?? '' }} &middot; {{ $condo->name ?? '' }}</a></p>
+                    @endforeach
                 </div>
             </div>
         </div>
