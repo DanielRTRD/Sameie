@@ -33,3 +33,41 @@ if (Config::get('app.debug')) {
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('dashboard')->middleware('verified');
+
+//Route::resource('c', 'CondoController');
+
+Route::group(
+    [
+        'prefix' => 'c'
+    ],
+    function () {
+        Route::get('/', [
+            'as' => 'c-index',
+            'uses' => 'CondoController@index'
+        ]);
+        Route::get('/opprett', [
+            'as' => 'c-create',
+            'uses' => 'CondoController@create'
+        ]);
+        Route::post('/lagre', [
+            'as' => 'c-store',
+            'uses' => 'CondoController@store'
+        ]);
+        Route::get('/{id}', [
+            'as' => 'c-show',
+            'uses' => 'CondoController@show'
+        ]);
+        Route::get('/{id}/endre', [
+            'as' => 'c-edit',
+            'uses' => 'CondoController@edit'
+        ]);
+        Route::post('/{id}/oppdater', [
+            'as' => 'c-update',
+            'uses' => 'CondoController@update'
+        ]);
+        Route::get('/{id}/slett', [
+            'as' => 'c-destroy',
+            'uses' => 'CondoController@destroy'
+        ]);
+    }
+);

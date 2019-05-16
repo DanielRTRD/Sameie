@@ -36,4 +36,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function condos()
+    {
+        return $this->belongsToMany(Condo::class, 'condo_user')->where('approved_at', '!=', null);
+    }
+
+    public function managing()
+    {
+        return $this->belongsToMany(Condo::class, 'condo_manager');
+    }
 }
