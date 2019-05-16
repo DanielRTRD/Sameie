@@ -3,6 +3,7 @@
 namespace Sameie\Http\Controllers\Auth;
 
 use Sameie\User;
+use Sameie\Condo;
 use Sameie\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,6 +53,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'condo' => ['required', 'integer', 'exists:condos,orgnr'],
         ]);
     }
 
@@ -63,10 +65,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $condo = Condo::where('orgnr', $data['condo'])->firstOrFail();
+
+        if ($condo) {
+            $user->condos()->attach($condo->id);
+        }
+
+        return $user;
     }
 }
