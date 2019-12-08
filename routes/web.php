@@ -20,7 +20,8 @@ if (Config::get('app.debug')) {
         Artisan::call('migrate:reset');
         Artisan::call('migrate');
         Artisan::call('db:seed');
-        return redirect('/loginn')->with('status', 'DB has been reset.');
+        Artisan::call('sameie:update');
+        return redirect('/')->with('status', 'DB has been reset.');
     });
     Route::get('/test', function () {
         App::abort(404);
