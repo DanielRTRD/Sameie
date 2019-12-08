@@ -48,5 +48,6 @@ class CondoTableSeeder extends Seeder
         ]);
 
         $condo->units()->attach([1,2,3,4]);
+        $condo->managers()->attach(1);
     }
 }
