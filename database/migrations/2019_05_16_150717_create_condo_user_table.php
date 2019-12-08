@@ -17,7 +17,7 @@ class CreateCondoUserTable extends Migration
             $table->bigIncrements('id');
             $table->integer('condo_id');
             $table->integer('user_id');
-            $table->dateTime('approved_at');
+            $table->dateTime('approved_at')->nullable();
             $table->timestamps();
         });
     }
