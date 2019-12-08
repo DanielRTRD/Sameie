@@ -64,7 +64,7 @@
                         <hr>
 
                         <div class="form-group row">
-                            <label for="condo" class="col-md-4 col-form-label text-md-right">{{ __('Sameie ID') }}</label>
+                            <label for="condo" class="col-md-4 col-form-label text-md-right">{{ __('Sameie Orgnr') }}</label>
 
                             <div class="col-md-6">
                                 <input id="condo" type="number" class="form-control{{ $errors->has('condo') ? ' is-invalid' : '' }}" name="condo" required>
