@@ -19,16 +19,20 @@
             <div class="card">
                 <div class="card-header">Informasjon fra BRREG</div>
                 <div class="card-body">
-                    <p>{{ __('Navn:') }} {{ $navn }}</p>
-                    <p>{{ __('Organisasjonsform:') }} {{ $organisasjonsform['beskrivelse'] }}</p>
-                    <p>{{ __('Stiftelsesdato:') }} {{ ucfirst(\Carbon\Carbon::parse($stiftelsesdato)->isoFormat('LL')) }}</p>
-                    <p>{{ __('Registreringsdato:') }} {{ ucfirst(\Carbon\Carbon::parse($registreringsdatoEnhetsregisteret)->isoFormat('LL')) }}</p>
+                    @if($brreg)
+                        <p>{{ __('Navn:') }} {{ $brreg['navn'] ?? '' }}</p>
+                        <p>{{ __('Organisasjonsform:') }} {{ $brreg['organisasjonsform']['beskrivelse'] ?? '' }}</p>
+                        <p>{{ __('Stiftelsesdato:') }} {{ ucfirst(\Carbon\Carbon::parse($brreg['stiftelsesdato'])->isoFormat('LL')) ?? '' }}</p>
+                        <p>{{ __('Registreringsdato:') }} {{ ucfirst(\Carbon\Carbon::parse($brreg['registreringsdatoEnhetsregisteret'])->isoFormat('LL')) ?? '' }}</p>
                     <p>{{ __('Adresse:') }}</p>
                     <address>
-                        {{ $forretningsadresse['adresse'][0] }}<br>
-                        {{ $forretningsadresse['adresse'][1] }}<br>
-                        {{ $forretningsadresse['postnummer'] }} {{ $forretningsadresse['poststed'] }}
+                            {{ $brreg['forretningsadresse']['adresse'][0] ?? '' }}<br>
+                            {{ $brreg['forretningsadresse']['adresse'][1] ?? '' }}<br>
+                            {{ $brreg['forretningsadresse']['postnummer'] ?? '' }} {{ $brreg['forretningsadresse']['poststed'] ?? '' }}
                     </address>
+                    @else
+                        <p class="m-0 p-0"><em>Finner ikke noe informasjon...</em></p>
+                    @endif
                 </div>
             </div>
         </div>
