@@ -1,8 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
-	{{ Breadcrumbs::render('c') }}
     <div class="row">
         <div class="col-md-8">
             @if (session('status'))
