@@ -3,6 +3,7 @@
 namespace Sameie\Console\Commands;
 
 use Illuminate\Console\Command;
+use anlutro\LaravelSettings\Facade as Setting;
 
 class update extends Command
 {
