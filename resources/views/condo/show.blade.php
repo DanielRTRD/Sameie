@@ -8,8 +8,9 @@
                     {{ session('status') }}
                 </div>
             @endif
+            <h3>{!! $condo->orgnr.' &middot;' ?? '' !!} {{ $condo->name ?? '' }}</h3>
             <div class="card">
-                <div class="card-header">{{ $orgnr ?? '' }} &middot; {{ $name ?? '' }}</div>
+                <div class="card-header"></div>
                 <div class="card-body">
                     
                 </div>
@@ -24,12 +25,12 @@
                         <p>{{ __('Organisasjonsform:') }} {{ $brreg['organisasjonsform']['beskrivelse'] ?? '' }}</p>
                         <p>{{ __('Stiftelsesdato:') }} {{ ucfirst(\Carbon\Carbon::parse($brreg['stiftelsesdato'])->isoFormat('LL')) ?? '' }}</p>
                         <p>{{ __('Registreringsdato:') }} {{ ucfirst(\Carbon\Carbon::parse($brreg['registreringsdatoEnhetsregisteret'])->isoFormat('LL')) ?? '' }}</p>
-                    <p>{{ __('Adresse:') }}</p>
-                    <address>
+                        <p>{{ __('Adresse:') }}</p>
+                        <address>
                             {{ $brreg['forretningsadresse']['adresse'][0] ?? '' }}<br>
                             {{ $brreg['forretningsadresse']['adresse'][1] ?? '' }}<br>
                             {{ $brreg['forretningsadresse']['postnummer'] ?? '' }} {{ $brreg['forretningsadresse']['poststed'] ?? '' }}
-                    </address>
+                        </address>
                     @else
                         <p class="m-0 p-0"><em>Finner ikke noe informasjon...</em></p>
                     @endif
