@@ -20,7 +20,7 @@ if (Config::get('app.debug')) {
         Artisan::call('migrate:reset');
         Artisan::call('migrate');
         Artisan::call('db:seed');
-        return redirect('/login')->with('status', 'DB has been reset.');
+        return redirect('/loginn')->with('status', 'DB has been reset.');
     });
     Route::get('/test', function () {
         App::abort(404);
@@ -39,10 +39,15 @@ Route::get('registrer', 'Auth\RegisterController@showRegistrationForm')->name('r
 Route::post('registrer', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
-Route::get('passord/tilbakestill', 'Auth\ForgotPasswordController@showLinkRequestForm');
-Route::post('passord/epost', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-Route::get('passord/tilbakestill/{token}', 'Auth\ResetPasswordController@showResetForm');
-Route::post('passord/tilbakestill', 'Auth\ResetPasswordController@reset');
+Route::get('passord/tilbakestill', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('passord/epost', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('passord/tilbakestill/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('passord/tilbakestill', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+// Email Verify Routes...
+Route::get('epost/sendigjen', 'Auth\VerificationController@resend')->name('verification.resend');
+Route::get('epost/verifiser', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('epost/verifiser/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 
 Route::get('/', 'HomeController@index')->name('dashboard')->middleware('verified');
 
