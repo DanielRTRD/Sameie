@@ -15,6 +15,7 @@ class CreateCondoTable extends Migration
     {
         Schema::create('condos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid');
             $table->string('name');
             $table->integer('orgnr');
             $table->timestamps();

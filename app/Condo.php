@@ -2,10 +2,13 @@
 
 namespace Sameie;
 
+use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Model;
 
 class Condo extends Model
 {
+
+    use HasUUID;
 
     protected $table = 'condos';
 
