@@ -28,6 +28,6 @@ class CreateCondoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('condo');
+        Schema::dropIfExists('condos');
     }
 }
