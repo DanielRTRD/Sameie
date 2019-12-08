@@ -85,7 +85,7 @@
         <div class="container">
             <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
             <p>
-                v0.1.0 &middot; Utviklet med <span class="text-danger">&#10084;</span> av <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
+                {{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }} &middot; Utviklet med <span class="text-danger">&#10084;</span> av <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
                 @if(Config::get('app.debug'))
                     <p>
                         <b><span class="text-danger">{{ mb_strtoupper(__('Debug Mode')) }}</span></b>
