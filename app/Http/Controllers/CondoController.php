@@ -57,6 +57,7 @@ class CondoController extends Controller
         if (!Auth::user()->condos->contains($condo->id)) {
             abort(403, $message = 'Du har ikke tilgang.');
         }
+        abort_unless($condo, 404);
 
         // Hent ut data fra BRREG APIet
         $curl = curl_init();
@@ -77,9 +78,12 @@ class CondoController extends Controller
         } else {
             $brreg = json_decode($response, true);
         }
+        if (!$brreg) {
+            $brreg = [];
+        }
         
         // Vis view når alt er klart
-        return view('condo.show', $condo, $brreg);
+        return view('condo.show')->withCondo($condo)->withBrreg($brreg);
     }
 
     /**
