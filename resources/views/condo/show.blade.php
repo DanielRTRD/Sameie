@@ -9,11 +9,14 @@
                 </div>
             @endif
             <h3>{!! $condo->orgnr.' &middot;' ?? '' !!} {{ $condo->name ?? '' }}</h3>
+            <hr>
             <div class="card">
-                <div class="card-header"></div>
-                <div class="card-body">
-                    
-                </div>
+                <div class="card-header">Registrerte enheter</div>
+                <ul class="list-group list-group-flush">
+                    @foreach($condo->units as $unit)
+                        <li class="list-group-item">{{ $unit->name }} &middot; {{ $unit->resident->name ?? 'N/A' }}</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
         <div class="col-md-4">

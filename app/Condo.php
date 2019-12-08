@@ -21,4 +21,9 @@ class Condo extends Model
     {
         return $this->belongsToMany(User::class, 'condo_manager');
     }
+
+    public function units()
+    {
+        return $this->belongsToMany(Unit::class, 'condo_unit');
+    }
 }
