@@ -71,6 +71,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        $user->createAsStripeCustomer();
+
         $condo = Condo::where('orgnr', $data['condo'])->firstOrFail();
 
         if ($condo) {
