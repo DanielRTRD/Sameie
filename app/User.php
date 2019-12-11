@@ -6,10 +6,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use BinaryCabin\LaravelUUID\Traits\HasUUID;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, HasUUID;
+    use Notifiable, HasUUID, Billable;
 
     /**
      * The attributes that are mass assignable.
