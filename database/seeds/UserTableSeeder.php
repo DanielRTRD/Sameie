@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
             ]);
             User::create([
                 'email' => 'test4@infihex.com',
-                'password'      => Hash::make('12345678'), // Den hash'r automatisk
+                'password' => Hash::make('12345678'), // Den hash'r automatisk
                 'name' => 'Ola "26C" Nordmann',
                 'email_verified_at' => \Carbon\Carbon::now(),
                 'uuid' => User::generateUUID(),
