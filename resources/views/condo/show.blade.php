@@ -31,7 +31,7 @@
                         <p>{{ __('Stiftelsesdato:') }} {{ ucfirst(\Carbon\Carbon::parse($brreg['stiftelsesdato'])->isoFormat('LL')) ?? '' }}</p>
                         <p>{{ __('Registreringsdato:') }} {{ ucfirst(\Carbon\Carbon::parse($brreg['registreringsdatoEnhetsregisteret'])->isoFormat('LL')) ?? '' }}</p>
                         <p>{{ __('Adresse:') }}</p>
-                        <address>
+                        <address class="ml-3">
                             {{ $brreg['forretningsadresse']['adresse'][0] ?? '' }}<br>
                             {{ $brreg['forretningsadresse']['adresse'][1] ?? '' }}<br>
                             {{ $brreg['forretningsadresse']['postnummer'] ?? '' }} {{ $brreg['forretningsadresse']['poststed'] ?? '' }}
