@@ -104,5 +104,32 @@
             </p>
         </div>
     </footer>
+
+    @yield('javascript')
+
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function(){
+        window.cookieconsent.initialise({
+          "palette": {
+            "popup": {
+              "background": "#333333",
+              "text": "#ffffff"
+            },
+            "button": {
+              "background": "#0061da",
+              "text": "#ffffff"
+            }
+          },
+          "content": {
+            "message": "{{ trans('global.cookieconsent.message') }}",
+            "dismiss": "{{ trans('global.cookieconsent.dismiss') }}",
+            "link": "{{ trans('global.cookieconsent.link') }}",
+            "href": "{{ url('/privacy') }}"
+          }
+        })});
+    </script>
+
 </body>
 </html>
