@@ -54,9 +54,13 @@ Route::get('/', 'HomeController@index')->name('dashboard')->middleware('verified
 
 //Route::resource('c', 'CondoController');
 
+Route::resource('s', 'SubscribeController')->middleware('auth');
+Route::resource('pm', 'PaymentMethodController')->middleware('auth');
+
 Route::group(
     [
-        'prefix' => 'c'
+        'prefix' => 'c',
+        'middleware' => 'auth'
     ],
     function () {
         Route::get('/', [

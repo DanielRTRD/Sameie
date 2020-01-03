@@ -2,7 +2,20 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Abonnementene dine</div>
+                <ul class="list-group list-group-flush">
+                    @if($subscriptions->count() === 0)
+                        <li class="list-group-item"><em>Du har ingen.</em></li>
+                    @endif
+                    @foreach($subscriptions as $subscription)
+                        <li class="list-group-item">{{ ucfirst($subscription->name) }} ({{ ucfirst($subscription->stripe_plan) }}) <div class="badge badge-primary float-right">{{ ucfirst($subscription->stripe_status) }}</div></li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Du er medlem av disse:') }}</div>
