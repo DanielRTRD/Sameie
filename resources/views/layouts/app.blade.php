@@ -31,7 +31,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-primary border-bottom shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Sameie') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -110,18 +110,18 @@
                     </div>
                 </div>
                 <div class="col-6 text-right">
-            <p>
-                        <a href="javascript:;" onclick="$('#changelog').modal('show', {backdrop: 'static'})" class="text-white">{{ Setting::get('APP_VERSION') }}</a> &middot; {!! __('footer.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
-                @if(Config::get('app.debug'))
                     <p>
+                        <a href="javascript:;" onclick="$('#changelog').modal('show', {backdrop: 'static'})" class="text-white">{{ Setting::get('APP_VERSION') }}</a> &middot; {!! __('footer.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
+                        @if(Config::get('app.debug'))
+                            <p>
                                 <b><span class="text-danger">{{ mb_strtoupper(__('footer.debugmode')) }}</span></b>
                                 @if(Setting::get('APP_SHOW_RESETDB'))
                                     <b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(__('footer.resetdbandsettings')) }}</a></b>
                                 @endif
+                            </p>
+                        @endif
                     </p>
-                @endif
-            </p>
-        </div>
+                </div>
             </div>
         </div>
     </footer>
