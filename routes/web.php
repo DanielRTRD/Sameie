@@ -31,6 +31,8 @@ if (Config::get('app.debug')) {
 | END DEBUG ONLY
 */
 
+Route::get('locale/{locale}', ['as' => 'locale', 'uses' => 'HomeController@locale']);
+
 Route::get('logginn', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('logginn', 'Auth\LoginController@login');
 Route::post('loggut', 'Auth\LoginController@logout')->name('logout');
