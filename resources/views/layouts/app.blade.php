@@ -95,18 +95,34 @@
             @yield('content')
         </div>
     </main>
-    <footer class="footer mt-auto py-3 text-center text-light bg-dark">
+    <footer class="footer mt-auto py-3 text-light bg-dark">
         <div class="container">
-            <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
+            <div class="row">
+                <div class="col-6">
+                    <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
+                    <div class="dropup btn-group">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}<span class="caret"></span></button>
+                        <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                            @foreach(array_flip(config('app.locales')) as $language => $lang)
+                                <a class="dropdown-item" href="{{ route('locale', $lang) }}">{{ $language }}</a>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6 text-right">
             <p>
-                {{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }} &middot; Utviklet med <span class="text-danger">&#10084;</span> av <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
+                        <a href="javascript:;" onclick="$('#changelog').modal('show', {backdrop: 'static'})" class="text-white">{{ Setting::get('APP_VERSION') }}</a> &middot; {!! __('footer.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
                 @if(Config::get('app.debug'))
                     <p>
-                        <b><span class="text-danger">{{ mb_strtoupper(__('Debug Mode')) }}</span></b>
-                        <b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(__('Reset db and settings')) }}</a></b>
+                                <b><span class="text-danger">{{ mb_strtoupper(__('footer.debugmode')) }}</span></b>
+                                @if(Setting::get('APP_SHOW_RESETDB'))
+                                    <b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(__('footer.resetdbandsettings')) }}</a></b>
+                                @endif
                     </p>
                 @endif
             </p>
+        </div>
+            </div>
         </div>
     </footer>
 
